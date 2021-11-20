@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Registrar empleado</title>
+{% endblock head %}
+
+
+{% block body %}
+    <div id="registrar_empleado" class="container d-flex justify-content-center align-items-center mt-5">
+        <form action="{% url 'empleados:registrar' %}" method="POST" class="d-grid p-5">
+            <h1 class="mb-4">Registrar empleado</h1>
+            {% csrf_token %}
+    
+            {{ form.as_p }}
+    
+            <button class="btn btn-primary btn-block mt-4" type="submit">Registrar empleado</button>
+    
+        </form>
+    </div>
+{% endblock body %}
+

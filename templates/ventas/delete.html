@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Eliminar {{ venta }}</title>
+{% endblock head %}
+
+
+{% block body %}
+    <div id="delete" class="container text-center mt-5">
+        <form method="POST">
+            {% csrf_token %}
+            <h5>Seguro que quieres eliminar el cliente: "{{ venta }}"</h5>
+            <input class="btn btn-primary btn-block mt-3" type="submit" value="Confirmar">
+            <br>
+            <a href="{% url 'ventas:list' %}">Cancelar</a>
+        </form>
+    </div>
+{% endblock body %}

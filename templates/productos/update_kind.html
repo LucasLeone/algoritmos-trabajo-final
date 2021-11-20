@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Editar {{ kind.nombre }}</title>
+{% endblock head %}
+
+
+{% block body %}
+    <div id="kind-create" class="container">
+        <form method="POST" enctype="multipart/form-data" class="d-grid justify-content-center mb-5">
+            {% csrf_token %}
+            <h3 class="text-center">Editar {{ kind.nombre }}</h3>
+            <hr>
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary btn-block mt-3">Editar</button>
+        </form>
+    </div>
+{% endblock body %}
+    
+    

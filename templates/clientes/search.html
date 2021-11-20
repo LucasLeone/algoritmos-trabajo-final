@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Buscar cliente | La Llegada</title>
+{% endblock head %}
+
+
+{% block body %}
+    <div id="search" class="container text-center mt-2">
+        <div class="row">
+            <div class="col">
+                <h5 class="search-title">Buscar cliente por nombre o número de documento</h5>
+            </div>
+        </div>
+        <div class="row">
+            <form action="." method="GET">
+                <div class="col col-md-6 offset-md-3 mb-2">
+                    <input class="form-control" type="text" name="q" value="{{ query|escape }}" placeholder="Buscar cliente" aria-label="Buscar cliente">
+                </div>
+                <div class="col col-md-2 offset-md-5 mb-2">
+                    <input class="form-control btn btn-outline-success" type="submit" value="Buscar">
+                </div>
+            </form>
+        </div>
+    </div>  
+    
+    {% if query %}
+    <div id="clientes-search" class="container-fluid mt-4 mb-4 search-container">
+        <div class="row">
+            {% if results %}
+            <table class="table mt-4">
+                <thead>
+                    <tr class="text-center">
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Tipo Documento</th>
+                        <th scope="col">Número Documento</th>
+                        <th scope="col">Teléfono</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Localidad</th>
+                        <th scope="col">Puntos</th>
+                        <th scope="col">Modificar</th>
+                        <th scope="col">Eliminar</th>
+                        <th scope="col">Ventas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cliente in results %}
+                        <tr class="text-center">
+                            <th scope="row">{{ cliente.pk }}</th>
+                            <td>{{ cliente.nombre }}</td>
+                            <td>{{ cliente.apellido }}</td>
+                            <td>{{ cliente.tipo_documento }}</td>
+                            <td>{{ cliente.numero_documento }}</td>
+                            <td>{{ cliente.telefono }}</td>
+                            <td>{{ cliente.email }}</td>
+                            <td>{{ cliente.localidad }}</td>
+                            <td>{{ cliente.puntos }}</td>
+                            <td><a href="{% url 'clientes:update' cliente.pk %}">X</a></td>
+                            <td><a href="{% url 'clientes:delete' cliente.pk %}">X</a></td>
+                            <td><a href="{% url 'clientes:list-por-cliente' cliente.pk %}">X</a></td>
+                        </tr>    
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                <p class="text-center no-results">No se encontraron clientes por: "{{ query }}"</p>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+{% endblock body %}

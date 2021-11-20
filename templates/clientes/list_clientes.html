@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Clientes | La Llegada</title>
+{% endblock head %}
+
+
+{% block body %}
+    <div id="clientes" class="container-fluid">
+        <div class="title text-center mt-4">
+            <h3>Clientes</h3>
+            <hr>
+            <div class="btn btn-success">
+                <a href="{% url 'clientes:create' %}" class="mt-4">Registrar cliente</a>
+            </div>
+            <div class="btn btn-success">
+                <a href="{% url 'clientes:buscar' %}" class="mt-4">Buscar cliente</a>
+            </div>
+        </div>
+        <table class="table mt-4">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Tipo Documento</th>
+                    <th scope="col">Número Documento</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Localidad</th>
+                    <th scope="col">Puntos</th>
+                    <th scope="col">Modificar</th>
+                    <th scope="col">Eliminar</th>
+                    <th scope="col">Ventas</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cliente in clientes %}
+                    <tr class="text-center">
+                        <th scope="row">{{ cliente.pk }}</th>
+                        <td>{{ cliente.nombre }}</td>
+                        <td>{{ cliente.apellido }}</td>
+                        <td>{{ cliente.tipo_documento }}</td>
+                        <td>{{ cliente.numero_documento }}</td>
+                        <td>{{ cliente.telefono }}</td>
+                        <td>{{ cliente.email }}</td>
+                        <td>{{ cliente.localidad }}</td>
+                        <td>{{ cliente.puntos }}</td>
+                        <td><a href="{% url 'clientes:update' cliente.pk %}">X</a></td>
+                        <td><a href="{% url 'clientes:delete' cliente.pk %}">X</a></td>
+                        <td><a href="{% url 'clientes:list-por-cliente' cliente.pk %}">X</a></td>
+                    </tr>    
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock body %}
+    

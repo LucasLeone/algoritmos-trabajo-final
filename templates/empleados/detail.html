@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Empleado: {{ empleado.username }}</title>
+{% endblock head %}
+
+
+{% block body %}
+<div class="container mb-5" style="margin-top: 8em;">
+    <div class="row">
+
+        <div class="col-sm-4 d-flex justify-content-center">
+            <img
+                src="{{ empleado.profile.picture.url }}"
+                alt="@{{ empleado.username}}"
+                class="rounded-circle"
+                width="150px"
+            />
+        </div>
+
+        <div class="col-sm-8">
+            <h2 style="font-weight: 100;">
+                {{ empleado.username }}
+                {% if empleado == request.user %}
+                    <a
+                        href="{% url "users:update" %}"
+                        class="ml-5 btn btn-sm btn-outline-info"
+                    >
+                        Editar perfil
+                    </a>
+                {% endif %}
+            </h2>
+
+            <div class="row mt-4">
+                <div class="col-sm-12">
+                    <p>{{ empleado.profile.phone_number }}</p>
+                </div>
+                <div class="col-sm-12">
+                    <p>{{ empleado.profile.dni }}</p>
+                </div>
+                <div class="col-sm-12">
+                    <p>{{ empleado.profile.address }}</p>
+                </div>
+                <div class="col-sm-12">
+                    <p>{{ empleado.profile.city }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
+    

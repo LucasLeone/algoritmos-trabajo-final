@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>La Llegada</title>
+{% endblock head %}
+
+
+{% block body %}
+    <div id="home" class="container text-center mt-4">
+        <h1>Estación de Servicio "La Llegada"</h1>
+        <hr>
+        <h4>Cliente llega a la Estación</h4>
+        <p>Esta registrado el cliente? <a href="{% url 'ventas:create' %}">Registra la venta!</a></p>
+        <p>No esta registrado el cliente? <a target="_blank" href="{% url 'clientes:create' %}">Registra el cliente</a> y luego la venta!</p>
+        <hr>
+        <h4 class="mt-5">Registrar movimientos:</h4>
+        <div class="options mt-5">
+            <a href="{% url 'ventas:list' %}">Ventas</a>
+            <a href="{% url 'clientes:list' %}">Clientes</a>
+            <a href="{% url 'productos:home' %}">Productos</a>
+        </div>
+    </div>
+{% endblock body %}
+    
+    

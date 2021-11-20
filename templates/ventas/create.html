@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>Agregar venta</title>
+{% endblock head %}
+
+
+{% block body %}
+    <div id="venta-update" class="container">
+        <form method="POST" enctype="multipart/form-data" class="d-grid justify-content-center mb-5 p-2">
+            {% csrf_token %}
+            <h3 class="text-center">Agregar venta</h3>
+            <hr>
+            <div class="forms-errors">
+                {% for field, error in form.errors.items %}
+                    <p class="m-0">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="forms">
+                {{ form.as_p }}
+            </div>
+            <small><a target="_blank" href="{% static 'images/codigo_qr.png' %}">Codigo QR</a></small>
+            <button type="submit" class="btn btn-primary mt-3 btn-block">Agregar</button>
+        </form>
+    </div>
+{% endblock body %}
+    
+    

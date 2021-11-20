@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Eliminar {{ object.nombre }}</title>
+{% endblock head %}
+
+
+{% block body %}
+    <div class="container text-center mt-5">
+        <form method="POST">
+            {% csrf_token %}
+            <h5>Seguro que quieres eliminar el tipo de producto: "{{ object }}"</h5>
+            <input class="btn btn-primary btn-block mt-3" type="submit" value="Confirmar">
+            <br>
+            <a href="{% url 'productos:list_products' %}">Cancelar</a>
+        </form>
+    </div>
+{% endblock body %}

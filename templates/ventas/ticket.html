@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Ticket #{{ venta.pk }} | La Llegada</title>
+{% endblock head %}
+
+
+{% block body %}
+    <div class="container d-flex justify-content-center mt-5 mb-2">
+        <div class="btn btn-success">
+            <a href="javascript:window.print()" class="mt-4" style="text-decoration: unset;">Imprimir ticket</a>
+        </div>
+    </div>
+    <div id="ticket" class="container d-flex justify-content-center">
+        <div class="row p-4">
+            <div class="ticket-title text-center">
+                <h5 class="mt-1">Estación de Servicio La Llegada</h5>
+                <small>Ticket #{{ venta.pk }}</small>
+            </div>
+            <hr class="m-0">
+            <div class="ticket-body mt-2">
+                <p>
+                    <strong>Fecha: </strong>{{ venta.fecha|date:'SHORT_DATE_FORMAT' }} | {{ venta.fecha|time:'H:i' }}
+                </p>
+                <p>
+                    <strong>Cliente: </strong>{{ venta.cliente }}
+                </p>
+                <p>
+                    <strong>Producto: </strong>{{ venta.producto }}
+                </p>
+                <p>
+                    <strong>Precio Producto: </strong>${{ venta.producto.precio }}
+                </p>
+                <p>
+                    <strong>Cantidad: </strong>{{ venta.cantidad }}
+                </p>
+                <p>
+                    <strong>Forma de Pago: </strong>{{ venta.forma_pago }}
+                </p>
+                <p>
+                    <strong>Subtotal: </strong>${{ venta.subtotal }}
+                </p>
+                <p>
+                    <strong>Descuento: </strong>${{ venta.descuento }}
+                </p>
+                <p>
+                    <strong>Total: </strong>${{ venta.get_total }}
+                </p>
+            </div>
+            <hr class="m-0">
+            <div class="ticket-last d-flex justify-content-center">
+                <p class="m-0">Gracias por su compra!</p>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

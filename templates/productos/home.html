@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Productos | La Llegada</title>
+{% endblock head %}
+
+
+{% block body %}
+    <div id="products-home" class="container text-center mt-4">
+        <h3>Productos</h3>
+        <hr>
+        <h5 class="mt-5">Opciones:</h5>
+        <div class="options-products mt-5">
+            <div>
+                <a href="{% url 'productos:list_products' %}">Productos</a>
+            </div>
+            <div>
+                <a href="{% url 'productos:list_kind' %}">Tipos de Productos</a>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

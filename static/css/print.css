@@ -1,0 +1,9 @@
+@media print {
+    nav, footer, .btn {
+        display: none !important;
+    }
+
+    #ticket .row {
+        width: 70%;
+    }
+}

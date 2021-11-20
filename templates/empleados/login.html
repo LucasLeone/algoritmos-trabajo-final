@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Iniciar Sesión</title>
+{% endblock head %}
+
+
+{% block body %}
+    {% if form.errors %}
+    <p class="alert alert-danger">
+        Su nombre de usuario y contraseña no coinciden. Por favor, vuelvelo a intentar!
+    </p>
+    {% endif%}
+
+    <div id="login" class="container d-flex justify-content-center align-items-center mt-5">
+        <form method="POST" action="{% url "empleados:login" %}" class="d-grid p-5">
+            <h1>Iniciar Sesión</h1>
+            {% csrf_token %}
+    
+            <div class="form-group m-1">
+                <input class="form-control" type="text" placeholder="Nombre de usuario" name="username" />
+            </div>
+    
+            <div class="form-group m-1">
+                <input class="form-control" type="password" placeholder="Contraseña" name="password" />
+            </div>
+    
+    
+            <button class="btn btn-primary btn-block mt-2" type="submit">Iniciar Sesión</button>
+    
+        </form>
+    </div>
+
+{% endblock body %}
+    

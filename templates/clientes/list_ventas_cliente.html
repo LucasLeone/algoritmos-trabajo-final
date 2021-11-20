@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>{{ cliente }}</title>
+{% endblock head %}
+
+
+{% block body %}
+<div id="productos" class="container-fluid">
+    <div class="title text-center mt-4">
+        <h3>Ventas de: {{ cliente }}</h3>
+        <hr>
+    </div>
+    <table class="table mt-4">
+        <thead>
+            <tr class="text-center">
+                <th scope="col">ID</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Precio Producto</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Forma de Pago</th>
+                <th scope="col">Subtotal</th>
+                <th scope="col">Descuento</th>
+                <th scope="col">Total</th>
+                <th scope="col">Ticket</th>
+                <th scope="col">Modificar</th>
+                <th scope="col">Eliminar</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for venta in ventas %}
+                <tr class="text-center">
+                    <th scope="row">{{ venta.pk }}</th>
+                    <td>{{ venta.fecha|date:'SHORT_DATE_FORMAT' }} | {{ venta.fecha|time:'H:i' }}</td>
+                    <td><a href="{% url 'clientes:list-por-cliente' venta.cliente.pk %}">{{ venta.cliente }}</a></td>
+                    <td><a href="{% url 'productos:list_producto' venta.producto.pk %}">{{ venta.producto }}</a></td>
+                    <td>{{ venta.producto.precio }}</td>
+                    <td>{{ venta.cantidad }}</td>
+                    <td>{{ venta.forma_pago }}</td>
+                    <td>${{ venta.subtotal }}</td>
+                    <td>${{ venta.descuento }}</td>
+                    <td>${{ venta.get_total }}</td>
+                    <td><a href="{% url 'ventas:ticket' venta.pk %}">X</a></td>
+                    <td><a href="{% url 'ventas:update' venta.pk %}">X</a></td>
+                    <td><a href="{% url 'ventas:delete' venta.pk %}">X</a></td>
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock body %}
+    

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Tipos de Productos | La Llegada</title>
+{% endblock head %}
+
+
+{% block body %}
+    <div id="kind_product" class="container-fluid mt-4 text-center">
+        <h3>Tipos de Productos</h3>
+        <hr>
+        <div class="btn btn-success mb-4">
+            <a href="{% url 'productos:create_kind' %}" class="mt-4">Registrar tipo de producto</a>
+        </div>
+        
+        <div class="container d-flex flex-wrap justify-content-center">
+            {% for kind in kind_product %}
+            <div class="card m-2" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ kind.nombre }}</h5>
+                    <p class="card-text">{{ kind.descripcion }}</p>
+                    <a href="{% url 'productos:update_kind' kind.pk %}" class="card-link">Editar</a>
+                    <a href="{% url 'productos:delete_kind' kind.pk %}" class="card-link">Eliminar</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+            
+    </div>
+{% endblock body %}
+    
+    

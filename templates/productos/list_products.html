@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Productos | La Llegada</title>    
+{% endblock head %}
+
+
+{% block body %}
+    <div id="productos" class="container-fluid">
+        <div class="title text-center mt-4">
+            <h3>Productos</h3>
+            <hr>
+            <div class="btn btn-success">
+                <a href="{% url 'productos:create' %}" class="mt-4">Registrar producto</a>
+            </div>
+        </div>
+        <table class="table mt-4">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Stock minimo</th>
+                    <th scope="col">Stock maximo</th>
+                    <th scope="col">Proveedor</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Tamaño</th>
+                    <th scope="col">Ubicación</th>
+                    <th scope="col">Tipo de Producto</th>
+                    <th scope="col">Modificar</th>
+                    <th scope="col">Eliminar</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+                    <tr class="text-center">
+                        <th scope="row">{{ producto.pk }}</th>
+                        <td><a href="{% url 'productos:list_producto' producto.pk %}">{{ producto.nombre }}</a></td>
+                        <td>{{ producto.precio }}</td>
+                        <td>{{ producto.cantidad }}</td>
+                        <td>{{ producto.stock_minimo }}</td>
+                        <td>{{ producto.stock_maximo }}</td>
+                        <td>{{ producto.proveedor }}</td>
+                        <td>{{ producto.marca }}</td>
+                        <td>{{ producto.tamaño }}</td>
+                        <td>{{ producto.ubicacion }}</td>
+                        <td>{{ producto.tipo_producto }}</td>
+                        <td><a href="{% url 'productos:update' producto.pk %}">X</a></td>
+                        <td><a href="{% url 'productos:delete' producto.pk %}">X</a></td>
+                    </tr>    
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock body %}
