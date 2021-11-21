@@ -1,6 +1,8 @@
 # Django
 from django import forms
 
+from clientes.models import Cliente
+
 # Models
 from .models import Venta
 from productos.models import Product
@@ -27,7 +29,7 @@ class VentasForm(forms.ModelForm):
         data = super().clean()
 
         producto = Product.objects.get(id=data['producto'].pk)
-        if producto.cantidad < float(self.data['cantidad']):
+        if producto.cantidad < float(data['cantidad']):
             raise forms.ValidationError('No hay suficiente stock del producto.')
         return data
 
@@ -36,8 +38,12 @@ class VentasForm(forms.ModelForm):
         data = self.cleaned_data
 
         producto = Product.objects.get(id=data['producto'].pk)
+        cliente = Cliente.objects.get(id=data['cliente'].pk)
 
         producto.cantidad -= float(data['cantidad'])
         producto.save()
+
+        cliente.puntos += int((data['cantidad'] * producto.precio) / 10)
+        cliente.save()
 
         return super().save()

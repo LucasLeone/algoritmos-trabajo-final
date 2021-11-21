@@ -58,6 +58,11 @@ class Venta(LlegadaModel):
         else:
             return 0
 
+    def puntos(self):
+        """Obtener cantidad de puntos."""
+        total = (self.producto.precio * self.cantidad) / 10
+        return total
+
     def get_total(self):
         """Obtener el total de la venta."""
         total = self.producto.precio * self.cantidad
