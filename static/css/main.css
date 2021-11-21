@@ -145,6 +145,10 @@ form p {
     width: 30%;
 }
 
+.kindproduct form p {
+    grid-template-rows: unset;
+}
+
 @media screen and (max-width: 1400px) {
     table {
         font-size: 90%;
