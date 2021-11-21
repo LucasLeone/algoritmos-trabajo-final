@@ -90,6 +90,7 @@ DATABASES = {
 }
 '''
 
+
 import dj_database_url
 from decouple import config
 
@@ -98,6 +99,7 @@ DATABASES = {
         default=config('DATABASE_URL')
     )
 }
+
 
 
 # Password validation
