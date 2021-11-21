@@ -19,7 +19,7 @@ class Cliente(LlegadaModel):
     apellido = models.CharField(max_length=100)
     tipo_documento = models.CharField(choices=DOCUMENTO_CHOICES, max_length=10)
     numero_documento = models.CharField(max_length=20)
-    telefono = models.IntegerField('Teléfono',)
+    telefono = models.CharField('Teléfono',)
     email = models.EmailField()
     localidad = models.CharField(max_length=100)
     puntos = models.IntegerField(default=0)
