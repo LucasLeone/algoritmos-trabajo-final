@@ -38,7 +38,7 @@ class Venta(LlegadaModel):
     forma_pago = models.ForeignKey(FormaPago, max_length=10, help_text='Contado 10% Descuento', on_delete=models.CASCADE)
 
     def __str__(self):
-        """Return id, date and client."""
+        """Retornar el id, la fecha de la venta y el cliente."""
         return f'{self.pk} - {self.fecha} - {self.cliente}'
 
     def subtotal(self):

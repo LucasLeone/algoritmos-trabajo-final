@@ -3,7 +3,7 @@ from django.db import models
 
 
 class LlegadaModel(models.Model):
-    """Base model for the all models."""
+    """Modelo base para todos los modelos de la app."""
 
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)

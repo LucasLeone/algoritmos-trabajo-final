@@ -6,7 +6,7 @@ from clientes.models import Cliente
 
 
 class ClienteForm(forms.ModelForm):
-    """Cliente model form."""
+    """Modelo del formulario de cliente."""
 
     class Meta:
         """Meta class."""
