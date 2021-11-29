@@ -29,8 +29,13 @@ class VentasForm(forms.ModelForm):
         data = super().clean()
 
         producto = Product.objects.get(id=data['producto'].pk)
+        
         if producto.cantidad < float(data['cantidad']):
             raise forms.ValidationError('No hay suficiente stock del producto.')
+
+        if producto.cantidad <= 0:
+            raise forms.ValidationError('Cantidad invalida.')
+            
         return data
 
     def save(self):
