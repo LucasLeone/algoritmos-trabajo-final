@@ -33,7 +33,7 @@ class VentasForm(forms.ModelForm):
         if producto.cantidad < float(data['cantidad']):
             raise forms.ValidationError('No hay suficiente stock del producto.')
 
-        if float(data['cantidad']) <= 0:
+        if float(data['cantidad']) == 0:
             raise forms.ValidationError('Cantidad invalida.')
 
         return data
