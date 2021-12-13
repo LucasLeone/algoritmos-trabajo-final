@@ -11,6 +11,11 @@
             {% csrf_token %}
             <h3 class="text-center">Agregar cliente</h3>
             <hr>
+            <div class="forms-errors">
+                {% for field, error in form.errors.items %}
+                    <p class="m-0">{{ error }}</p>
+                {% endfor %}
+            </div>
             <div class="forms">
                 {{ form.as_p }}
             </div>
